@@ -1,0 +1,31 @@
+{
+  "name": "job-profile-generator",
+  "version": "1.0.0",
+  "description": "Uses Inquirer to generate an HTML files via command line prompts. Test-driven developed with object-oriented programming, tests powered by Jest.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jclanc7507/job-profile-generator.git"
+  },
+  "keywords": [
+    "Node",
+    "TDD",
+    "Inquirer",
+    "Jest",
+    "Profile",
+    "Generator",
+    "HTML"
+  ],
+  "author": "jclanc7507",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jclanc7507/job-profile-generator/issues"
+  },
+  "homepage": "https://github.com/jclanc7507/job-profile-generator#readme"
+}
