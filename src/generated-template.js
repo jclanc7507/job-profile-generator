@@ -38,8 +38,8 @@ const createCards = function (employee) {
                 <h4 class="employee-role">${employee.getRole()}</h4>
             </div>
             <div class="employee-info">
-                <h5>ID#${employee.getId()}</h5>
-                <h5>Email:${employee.getEmail()}</h5>
+                <h5 class="id">ID#${employee.getId()}</h5>
+                <h5 class="email">Email:${employee.getEmail()}</h5>
                 ${generateRoleCard(employee)}
             </div>
         </card>        

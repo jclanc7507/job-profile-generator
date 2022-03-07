@@ -3,47 +3,23 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generatePage = require('./src/generated-template.js');
 
-const promptUser = () => {
-    return inquirer.prompt([ 
-        {
-            type: 'list',
-            name: 'role',
-            message: "Which role is this profile for?",
-            choices: ['Employee', 'Engineer', 'Intern', 'Manager'],
-        },
-        {
-            type: 'input', 
-            name: 'name', 
-            message: "What is your employee's name?"
-        },
-        {
-            type: 'input',
-            name: 'id',
-            message: 'What is your Employee ID#?'
-        },
-        {
-            type: 'input',
-            name: 'email',
-            message: "What is your employee email address?"
-        },
-    ]);
-};
+let everyEmployee = []
+async function promptUser() {
+    console.log("Job Profile Generator Started.")
+    let myTeam = await inquirer.prompt({
+        type: "input",
+        name: "myTeam",
+        message: "What is the name of your team? (REQUIRED)",
+        validate: (userInput) => {
+            if (userInput) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    })
 
+    
+}
 
 promptUser()
-    .then(portfolioData => {
-        return generatePage(portfolioData);
-    })
-    .then(pageHTML => {
-        return writeFile(pageHTML);
-    })
-    .then(writeFileResponse => {
-        console.log(writeFileResponse);
-        return copyFile();
-    })
-    .then(copyFileResponse => {
-        console.log(copyFileResponse);
-    })
-    .catch(err => {
-        console.log(err);
-});
