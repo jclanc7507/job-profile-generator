@@ -1,7 +1,6 @@
- 
-module.exports = templateData => {
-    const {main} = templateData;
+// created Employee card by default, then other roles upon selection  
 
+const createPage = function (cards, myTeam) {
     return `
         <!DOCTYPE html>
         <html lang="en">
@@ -16,24 +15,13 @@ module.exports = templateData => {
                 <title>${myTeam}</title>
             </head>
 
-        <body>
-           
+        <body class="container">
+            <header>
+                <h1>${myTeam}</h1>
+            </header>
 
-            <main class="container">
-            
-                <div class="cards">
-
-                    <div class="employees">
-                        <h2 class="name">${name}</h2>
-                        <h2 class="role">✎ ${role}</h2>
-                    </div>
-                    <div class="about">
-                        <p class="id">ID# ${id}</p>
-                        <p class="email">Email: ${email}</p>
-                        
-                    </div>
-                    
-                </div>
+            <main>
+                ${cards}
 
             </main>
             
@@ -41,3 +29,41 @@ module.exports = templateData => {
         </html>
     `;
 };
+
+const createCards = function (employee) {
+    return `
+        <card class="employee-card">
+            <div>
+                <h4 class="employee-name">${employee.getName()}</h4>
+                <h4 class="employee-role">${employee.getRole()}</h4>
+            </div>
+            <div class="employee-info">
+                <h5>ID#${employee.getId()}</h5>
+                <h5>Email:${employee.getEmail()}</h5>
+                ${generateRoleCard(employee)}
+            </div>
+        </card>        
+        `
+}
+
+const createRoleCard = function (employee) {
+    switch (employee.getRole()) {
+        case "Manager":
+            return `Office Number: ${employee.getOfficeNumber()}`
+            break;
+
+        case "Engineer":
+            return `GitHub: <a href="https://www.github.com/${employee.getGithub()}" target="_blank">${employee.getGithub()}</a>`
+            break;
+
+        case "Intern":
+            return `School: ${employee.getSchool()}`
+            break;
+        
+        default: 
+            return `Role: Employee`
+            break;
+    }
+}
+
+module.exports = { createCards, createRoleCard}
