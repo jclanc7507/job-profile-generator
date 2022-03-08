@@ -213,29 +213,37 @@ async function promptUser() {
         switch (askRole.role) {
             case "Engineer":
                 let engineer = await inquirer.prompt(engineerPrompts)
-                everyEmployee.push(new engineer(engineer.name, engineer.id, engineer.email, engineer.github))
+                everyEmployee.push(new Engineer(engineer.name, engineer.id, engineer.email, engineer.github))
                 break;
 
             case "Intern":
                 let intern = await inquirer.prompt(internPrompts)
-                everyEmployee.push(new intern(intern.name, intern.id, intern.email, intern.school))
+                everyEmployee.push(new Intern(intern.name, intern.id, intern.email, intern.school))
                 break;
 
-            default:
+            default: "Exit"
                 loop = false;
                 break;
         }
     }
+}
 
-let cardHTML = []
+let cardHTML = [];
 
-everyEmployee.forEach(employee => {
-    cardHTML.push(generateCard(employee))
-})
-
-let pageHTML = createPage(cardHTML.join(""), myTeam.myTeam)
-writeFile(pageHTML)
-
-};
-
-promptUser();
+promptUser() 
+    .then(everyEmployee => {
+        return generatePage(everyEmployee);
+    })
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    })
+    .then(writeFileResponse => {
+        console.log(writeFileResponse);
+        return copyFile();
+    })
+    .then(copyFileResponse => {
+        console.log(copyFileResponse);
+    })
+    .catch(err => {
+        console.log(err)
+    })
