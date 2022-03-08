@@ -14,6 +14,7 @@ async function promptUser() {
             if (userInput) {
                 return true;
             } else {
+                console.log("Please enter a valid team name.")
                 return false;
             }
         }
@@ -21,5 +22,60 @@ async function promptUser() {
 
     
 }
+
+const engineerPrompts = [
+    {
+        type: "input",
+        name: "name",
+        message: "What is this Engineer's name? (REQUIRED)",
+        validate: (userInput) => {
+            if (userInput) {
+                return true;
+            } else {
+                console.log("Please enter a valid name.");
+                return false;
+            }
+        }
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "What is this Engineer's employee ID#? (REQUIRED)",
+        validate: (userInput) => {
+            if (userInput) {
+                return true;
+            } else {
+                console.log("Please enter a valid ID number.");
+                return false;
+            }
+        }
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is this Enigneer's email address? (REQUIRED)",
+        validate: (userInput) => {
+            if (userInput) {
+                return true;
+            } else {
+                console.log("Please enter a valid email address.");
+                return false;
+            }
+        }
+    },
+    {
+        type: "input",
+        name: "github",
+        message: "What is this Engineer's GitHub username? (REQUIRED)",
+        validate: (userInput) => {
+            if (userInput) {
+                return true;
+            } else {
+                console.log("Please enter a valid GitHub username.");
+                return false;
+            }
+        }
+    }
+]
 
 promptUser()
